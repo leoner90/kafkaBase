@@ -1,0 +1,3 @@
+com\example\test\entities\TestUser.class
+com\example\test\TestApplication.class
+com\example\test\repository\TestUserRepository.class
