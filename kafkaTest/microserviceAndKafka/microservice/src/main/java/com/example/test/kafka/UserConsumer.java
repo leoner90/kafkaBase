@@ -12,10 +12,11 @@ public class UserConsumer {
     private final NotificationService notificationService;
 
     @KafkaListener(
-            topics = "user-created",
+            topics = "users",
             groupId = "notification-service"
     )
     public void consume(String name) {
         notificationService.notifyUser(name);
     }
 }
+

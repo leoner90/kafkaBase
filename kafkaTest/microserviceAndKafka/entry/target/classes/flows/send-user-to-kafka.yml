@@ -1,0 +1,15 @@
+flow:
+  id: "send-user-to-kafka"
+  description: "Send created user to Kafka"
+  ttl: 10s
+
+first.task: "send.user.kafka"
+
+tasks:
+  - process: "send.user.kafka"
+    description: "Publish user name to Kafka"
+    input:
+      - "input.body.userId -> userId"
+    output:
+      - "result -> output.body"
+    execution: end

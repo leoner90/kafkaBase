@@ -1,6 +1,6 @@
 rest:
   - service: "http.flow.adapter"
     methods: ['GET']
-    url: "/api/hello"
-    flow: "hello-flow"
+    url: "/users/{name}"
+    flow: "create-user-flow"
     timeout: 10s

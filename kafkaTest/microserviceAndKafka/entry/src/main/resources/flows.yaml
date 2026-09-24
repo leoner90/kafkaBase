@@ -1,5 +1,6 @@
 flows:
-  - "hello-flow.yml"
   - "create-user-flow.yml"
+  - "send-user-to-kafka.yml"
+
 
 location: "classpath:/flows/"

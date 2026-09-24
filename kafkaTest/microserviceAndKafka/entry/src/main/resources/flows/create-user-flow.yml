@@ -1,0 +1,37 @@
+flow:
+  id: "create-user-flow"
+  description: "Validate and create user"
+  ttl: 10s
+
+first.task: "validate.user"
+
+tasks:
+  - process: "validate.user"
+    description: "Validate username"
+    input:
+      - "input.path_parameter.name -> name"
+    output:
+      - "result.name -> model.name"
+    execution: sequential
+    next:
+      - "create.user"
+
+  - process: "create.user"
+    description: "Create user in database"
+    input:
+      - "model.name -> name"
+    output:
+      - "result.id -> model.userId"
+      - "result.name -> model.name"
+    execution: sequential
+    next:
+      - "send.user.flow"
+
+  - name: "send.user.flow"
+    process: "flow://send-user-to-kafka"
+    description: "Send created user to Kafka flow"
+    input:
+      - "model.userId -> userId"
+    output:
+      - "result -> output.body"
+    execution: end

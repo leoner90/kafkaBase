@@ -1,35 +1,22 @@
 package com.example.test.kafka;
 
+import com.example.test.entities.TestUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class UserProducer {
+public class UserProducer
+{
+    private final KafkaTemplate<String, String > kafkaTemplate;
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
-
-    public void sendUserName(String name) {
-        kafkaTemplate.send("user-created", name);
+    public void sendUser(String  user)
+    {
+        System.out.println(user);
+        kafkaTemplate.send("users", user);
     }
 
-    public void sendUserName(String userId, String name) {
 
-        kafkaTemplate
-            .send("user-created", userId, name)
-            .whenComplete((result, ex) ->
-            {
-                if (ex == null)
-                {
-                    System.out.println("Message sent to partition " + result.getRecordMetadata().partition() + " with offset " + result.getRecordMetadata().offset());
-                }
-                else
-                {
-                    System.err.println("Failed to send message: " + ex.getMessage());
-                }
-            });
-    }
+
 }
-
-
