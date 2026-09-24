@@ -1,0 +1,6 @@
+rest:
+  - service: "http.flow.adapter"
+    methods: ['GET']
+    url: "/api/hello"
+    flow: "hello-flow"
+    timeout: 10s

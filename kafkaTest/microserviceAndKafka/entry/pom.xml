@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
+        <version>4.0.0</version>
         <relativePath/>
     </parent>
 
@@ -17,7 +17,7 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
-        <java.version>8</java.version>
+        <java.version>21</java.version>
     </properties>
 
     <dependencies>
@@ -56,6 +56,18 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
+        <!--        mercury-->
+        <dependency>
+            <groupId>org.platformlambda</groupId>
+            <artifactId>platform-core</artifactId>
+            <version>4.12.16</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.platformlambda</groupId>
+            <artifactId>event-script-engine</artifactId>
+            <version>4.12.16</version>
+        </dependency>
     </dependencies>
 
     <build>

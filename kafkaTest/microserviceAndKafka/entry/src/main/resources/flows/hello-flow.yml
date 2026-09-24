@@ -1,0 +1,16 @@
+flow:
+  id: "hello-flow"
+  description: "Simple Mercury test"
+  ttl: 10s
+
+first.task: "test.hello"
+
+tasks:
+  - input: []
+    process: "test.hello"
+
+    output:
+      - "result -> output.body"
+
+    description: "Return hello message"
+    execution: end

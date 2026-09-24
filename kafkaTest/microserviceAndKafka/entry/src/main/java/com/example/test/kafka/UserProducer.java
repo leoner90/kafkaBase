@@ -17,23 +17,18 @@ public class UserProducer {
     public void sendUserName(String userId, String name) {
 
         kafkaTemplate
-                .send("user-created", userId, name)
-                .addCallback(
-                        result -> {
-                            System.out.println(
-                                    "Message sent to partition " +
-                                            result.getRecordMetadata().partition() +
-                                            " with offset " +
-                                            result.getRecordMetadata().offset()
-                            );
-                        },
-                        ex -> {
-                            System.err.println(
-                                    "Failed to send message: " +
-                                            ex.getMessage()
-                            );
-                        }
-                );
+            .send("user-created", userId, name)
+            .whenComplete((result, ex) ->
+            {
+                if (ex == null)
+                {
+                    System.out.println("Message sent to partition " + result.getRecordMetadata().partition() + " with offset " + result.getRecordMetadata().offset());
+                }
+                else
+                {
+                    System.err.println("Failed to send message: " + ex.getMessage());
+                }
+            });
     }
 }
 

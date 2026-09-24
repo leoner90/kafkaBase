@@ -1,0 +1,5 @@
+flows:
+  - "hello-flow.yml"
+  - "create-user-flow.yml"
+
+location: "classpath:/flows/"
